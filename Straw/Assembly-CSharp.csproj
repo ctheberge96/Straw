@@ -55,6 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Node.cs" />
+     <Compile Include="Assets\Scripts\Path.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/thebergec/Desktop/Programming/Unity/Projects/Straw-Game/Straw/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

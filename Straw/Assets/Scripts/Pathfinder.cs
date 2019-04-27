@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinder : MonoBehaviour
+public class Pathfinder
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public static Path getPath() {
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
