@@ -57,8 +57,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Colliders.cs" />
+     <Compile Include="Assets\Scripts\Entity\LayeredEntity.cs" />
+     <Compile Include="Assets\Scripts\Entity\PathFollower.cs" />
+     <Compile Include="Assets\Scripts\Entity\StrawlingBrain.cs" />
      <Compile Include="Assets\Scripts\GenTestingGround.cs" />
-     <Compile Include="Assets\Scripts\LayeredEntity.cs" />
+     <Compile Include="Assets\Scripts\Items\Food.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Node.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Path.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Pathfinder.cs" />
@@ -66,6 +69,7 @@
      <Compile Include="Assets\Scripts\Pathfinding\Tile.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\TileNoComp.cs" />
      <Compile Include="Assets\Scripts\PathingTestCode.cs" />
+     <Compile Include="Assets\Scripts\WorldManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/beach/Desktop/Programming/Unity Projects/Straw-Game/Straw/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
