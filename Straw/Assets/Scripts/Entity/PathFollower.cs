@@ -15,17 +15,15 @@ public class PathFollower : MonoBehaviour
     void Update()
     {
 
-        if (myPath != null & !stopping) {
+        if (!Done() & !stopping) {
 
             if (transform.position.x == myPath[curNode].x && transform.position.y == myPath[curNode].y && transform.position.z == myPath[curNode].z) {
 
                 curNode++;
 
-                if (!ValidateNextCell()) {
+                if (!Done() && !ValidateNextCell()) {
                     Stop();
                 }
-
-                if (curNode == myPath.length) { ResetPath(); }
 
             } else {
 
@@ -33,11 +31,11 @@ public class PathFollower : MonoBehaviour
 
             }
 
-        } else if (stopping) {
+        } else if (!Done() && stopping) {
 
             if (transform.position.x == myPath[curNode].x && transform.position.y == myPath[curNode].y && transform.position.z == myPath[curNode].z) {
 
-                ResetPath();
+                CompletePath();
 
             } else {
 
@@ -57,8 +55,9 @@ public class PathFollower : MonoBehaviour
     ///</returns>
     public bool PathTo(Vector3 point) {
 
+        ResetPath();
+        
         myPath = Pathfinder.getPath(transform.position, point, maxChecks);
-        curNode = 0;
 
         return myPath == null;
 
@@ -69,6 +68,19 @@ public class PathFollower : MonoBehaviour
     ///</summary>
     public void Stop() {
         stopping = true;
+    }
+
+    ///<summary>
+    ///If the pather is currently stopping.
+    ///</summary>
+    public bool isStopping {
+        
+        get {
+
+            return stopping;
+
+        }
+
     }
 
     ///<summary>
@@ -84,6 +96,12 @@ public class PathFollower : MonoBehaviour
         curNode = 0;
     }
 
+    private void CompletePath() {
+        if (myPath != null) {
+            curNode = myPath.length;
+        }
+    }
+
     private void MoveToCurNode() {
         transform.position = Vector3.MoveTowards(transform.position, myPath[curNode], moveSpeed * Time.deltaTime);
     }
@@ -92,6 +110,10 @@ public class PathFollower : MonoBehaviour
         return Colliders.isFree(myPath[curNode],
                                 Camera.main.GetComponent<Grid>().cellSize,
                                 LayerMask.GetMask("solid"));
+    }
+
+    public bool Done() {
+        return myPath == null || curNode == myPath.length;
     }
 
 }
