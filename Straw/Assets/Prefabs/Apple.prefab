@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 908123977081729056}
   - component: {fileID: 1946224038558572328}
   - component: {fileID: 7807443962393319817}
+  - component: {fileID: -8749397599966992093}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerValue: 50
   thirstValue: 10
+--- !u!114 &-8749397599966992093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052426315204803911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85874a484b9d10542993e0bcc3311d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

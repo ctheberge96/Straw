@@ -55,28 +55,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Bed.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
-     <Compile Include="Assets\Scripts\Colliders.cs" />
-     <Compile Include="Assets\Scripts\Container.cs" />
+     <Compile Include="Assets\Scripts\Entity\Body.cs" />
      <Compile Include="Assets\Scripts\Entity\LayeredEntity.cs" />
      <Compile Include="Assets\Scripts\Entity\PathFollower.cs" />
-     <Compile Include="Assets\Scripts\Entity\StrawlingBrain.cs" />
+     <Compile Include="Assets\Scripts\Entity\Soul.cs" />
      <Compile Include="Assets\Scripts\GenTestingGround.cs" />
+     <Compile Include="Assets\Scripts\Items\Drink.cs" />
      <Compile Include="Assets\Scripts\Items\Food.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
-     <Compile Include="Assets\Scripts\Manifest.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Node.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Path.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Pathfinder.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\ReportCreator.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Tile.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\TileNoComp.cs" />
-     <Compile Include="Assets\Scripts\PathingTestCode.cs" />
-     <Compile Include="Assets\Scripts\Tasks\Steps\Step.cs" />
-     <Compile Include="Assets\Scripts\Tasks\Steps\Step_Move.cs" />
+     <Compile Include="Assets\Scripts\Structures\Bed.cs" />
+     <Compile Include="Assets\Scripts\Structures\Container.cs" />
      <Compile Include="Assets\Scripts\Tasks\Task.cs" />
-     <Compile Include="Assets\Scripts\Tasks\Tasks.cs" />
+     <Compile Include="Assets\Scripts\Tasks\Task_Drink.cs" />
+     <Compile Include="Assets\Scripts\Tasks\Task_DrinkFromContainer.cs" />
+     <Compile Include="Assets\Scripts\Tasks\Task_Eat.cs" />
+     <Compile Include="Assets\Scripts\Tasks\Task_EatFromContainer.cs" />
+     <Compile Include="Assets\Scripts\Tasks\Task_Sleep.cs" />
+     <Compile Include="Assets\Scripts\Tasks\TaskAI.cs" />
+     <Compile Include="Assets\Scripts\Tasks\TaskManager.cs" />
+     <Compile Include="Assets\Scripts\Utility\Colliders.cs" />
+     <Compile Include="Assets\Scripts\Utility\Manifest.cs" />
      <Compile Include="Assets\Scripts\WorldManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/beach/Desktop/Programming/Unity Projects/Straw-Game/Straw/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

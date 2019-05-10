@@ -240,6 +240,8 @@ MonoBehaviour:
   - {fileID: 5259333561335131759, guid: 2696440ae87e71f4fbd89bd1741173d2, type: 3}
   testFood: {fileID: 6052426315204803911, guid: fdfa4e6f60d03df4ea88f357c1c66591,
     type: 3}
+  testDrink: {fileID: 3281198982790969474, guid: 7a0c257f4b107a345bad189c64db9070,
+    type: 3}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

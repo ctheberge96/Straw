@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 5259333561335131756}
   - component: {fileID: 3602139504120646273}
   - component: {fileID: 4144302193734505582}
-  - component: {fileID: 5259333561335131758}
   - component: {fileID: 4247140743734116009}
+  - component: {fileID: 3524542530876580475}
+  - component: {fileID: 7565862324885110471}
+  - component: {fileID: 4304144116034821740}
   m_Layer: 0
   m_Name: Strawling
   m_TagString: Untagged
@@ -130,31 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   maxChecks: 100
---- !u!114 &5259333561335131758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5259333561335131759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a9890906ba244f4987b23e51a9f86bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eatingSound: {fileID: 8300000, guid: ca334e0d773570d4a91a2288d78b0d96, type: 3}
-  hungerPerSec: 0.08
-  eatTime: 4.16
-  secsToStarvation: 1200
-  thirstPerSec: 0.08
-  secsToDehydration: 1200
-  energyPerSec: 0.16
-  energyGainPerSec: 0.5
-  secsToPassOut: 300
-  hunger: 20.5
-  thirst: 100
-  energy: 100
-  maxHp: 100
 --- !u!82 &4247140743734116009
 AudioSource:
   m_ObjectHideFlags: 0
@@ -251,3 +228,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3524542530876580475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259333561335131759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8f9bc44bf963c45a340d7abae9b4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hunger: 21
+  thirst: 21
+  energy: 21
+  maxHp: 100
+  hungryTime: 1200
+  thirstyTime: 1200
+  sleepyTime: 1200
+--- !u!114 &7565862324885110471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259333561335131759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32841b239d99fec48a66acf8981121bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4304144116034821740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259333561335131759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b917a251c563a418be3a1576d2d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,117 +1,26 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Task {
+public interface Task
+{
 
-    public enum Status { 
+    ///<summary>What happens when this task is received by a TaskAI.</summary>   
+    void OnStart(GameObject unit);
 
-        OKAY,
-        DONE,
-        IMPOSSIBLE,
-        CANTDO,
-        NOTASSIGNED
+    ///<summary>What happens when this task is worked on by a TaskAI. Called once per frame.</summary>  
+    void OnWork(GameObject unit);
 
-    }
+    ///<summary>Checks if this task is currently valid for all TaskAI units.</summary>  
+    bool IsValid();
 
-    public Task(params Step[] steps) {
+    ///<summary>Checks if this task is currently doable for this TaskAI unit.</summary>  
+    bool CanDo(GameObject unit);
 
-        this.steps.AddRange(steps);
+    ///<summary>Checks if this task is completed.</summary>
+    bool IsDone(GameObject unit);
 
-    }
-
-    private GameObject assigned;
-    public void Assign(GameObject entity) {
-        assigned = entity;
-    }
-    public void UnAssign() {
-        assigned = null;
-    }
-
-    private List<Step> steps;
-
-    private int curStepInd;
-
-    private Step curStep {
-
-        get {
-
-            return curStepInd != steps.Count ? steps[curStepInd]:null;
-
-        }
-
-    }
-
-    private void NextStep() {
-
-        curStepInd = Mathf.Clamp(curStepInd + 1, 0, steps.Count);
-
-    }
-
-    public bool done {
-
-        get {
-
-            foreach (Step step in steps) {
-
-                if (!step.Validate()) {
-
-                    return false;
-
-                }
-
-            }
-
-            return curStep == null;
-
-        }
-
-    }
-
-    public Status WorkOn() {
-
-        if (assigned == null) { return Status.NOTASSIGNED; }
-
-        if (done) { return Status.DONE; } //task is completed
-
-        if (curStep.Completed(assigned)) {
-
-            NextStep();
-
-            return WorkOn(); //do the next step
-
-        } else {
-
-            //If we can do it,
-            if (curStep.Validate() && curStep.CanDo(assigned)) {
-
-                //Do it.
-                curStep.WorkOn(assigned);
-
-                return Status.OKAY;
-
-            //If it's impossible,
-            } else if (!curStep.Validate()) {
-
-                //Say so.
-                return Status.IMPOSSIBLE;
-
-            //If we alone cannot do it,
-            } else {
-
-                //Say so.
-                return Status.CANTDO;
-
-            }
-
-        }
-
-    }
-
-    public void Stop() {
-
-        if (!done) { curStep.Stop(assigned); }
-    
-    }
+    ///<summary>Resets this task</summary>  
+    void Abandon(GameObject unit);
 
 }

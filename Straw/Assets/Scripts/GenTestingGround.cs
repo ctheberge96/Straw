@@ -6,6 +6,7 @@ public class GenTestingGround : MonoBehaviour
 {
     public GameObject[] blocks; //0 wood 1 glass 2 stair
     public GameObject testFood;
+    public GameObject testDrink;
 
     private string[] map = new string[2];
 
@@ -29,13 +30,13 @@ public class GenTestingGround : MonoBehaviour
         map[1] = 
         "000000    " +
         "000000  20" +
-        "00 400   0" +
+        "00 300   0" +
         "00 000   1" +
         "         1" +
         "         1" +
         "         0" +
         "        20" +
-        " 3        " +
+        "    4     " +
         "5         ";
 
         for (int z = 0; z < map.Length; z++) {
@@ -43,7 +44,6 @@ public class GenTestingGround : MonoBehaviour
             for (int i = 0; i < curMap.Length; i++) {
                 if (curMap[i] == ' ') { continue; }
                 GameObject obj = GameObject.Instantiate(blocks[int.Parse(curMap[i].ToString())], new Vector3((i % 10) * grid.cellSize.x, (i / 10) * grid.cellSize.y, z - 1), Quaternion.identity);
-                Manifest.Register(obj);
 
                 //If it's a container, fill it.
                 if (obj.GetComponent<Container>() != null) {
@@ -56,9 +56,17 @@ public class GenTestingGround : MonoBehaviour
 
                     }
 
-                    Manifest.Register(obj);
+                    for (int ii = 0; ii < 5; ii++) {
+
+                        GameObject coffee = GameObject.Instantiate(testDrink, new Vector3((i % 10) * grid.cellSize.x, (i / 10) * grid.cellSize.y, z - 1), Quaternion.identity);
+                        coffee.SetActive(false);
+                        obj.GetComponent<Container>().AddItem(coffee);
+
+                    }
 
                 }
+
+                Manifest.Register(obj);
 
             }
         }

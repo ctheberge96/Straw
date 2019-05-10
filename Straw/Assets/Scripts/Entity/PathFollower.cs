@@ -22,6 +22,7 @@ public class PathFollower : MonoBehaviour
                 curNode++;
 
                 if (!Done() && !ValidateNextCell()) {
+                    Debug.Log("path suddenly blocked at " + myPath[curNode] + "! Stopping!");
                     Stop();
                 }
 
@@ -58,8 +59,8 @@ public class PathFollower : MonoBehaviour
         ResetPath();
         
         myPath = Pathfinder.getPath(transform.position, point, maxChecks);
-
-        return myPath == null;
+        
+        return myPath != null;
 
     }
 
