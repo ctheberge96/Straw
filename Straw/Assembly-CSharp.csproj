@@ -55,8 +55,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\3D\Pathfinding\Pathfinder.cs" />
+     <Compile Include="Assets\Scripts\3D\Test.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Entity\Body.cs" />
+     <Compile Include="Assets\Scripts\Entity\EntityBillboard.cs" />
      <Compile Include="Assets\Scripts\Entity\LayeredEntity.cs" />
      <Compile Include="Assets\Scripts\Entity\PathFollower.cs" />
      <Compile Include="Assets\Scripts\Entity\Soul.cs" />
@@ -70,6 +73,7 @@
      <Compile Include="Assets\Scripts\Pathfinding\ReportCreator.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Tile.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\TileNoComp.cs" />
+     <Compile Include="Assets\Scripts\Stairs.cs" />
      <Compile Include="Assets\Scripts\Structures\Bed.cs" />
      <Compile Include="Assets\Scripts\Structures\Container.cs" />
      <Compile Include="Assets\Scripts\Tasks\Task.cs" />
@@ -81,6 +85,7 @@
      <Compile Include="Assets\Scripts\Tasks\TaskAI.cs" />
      <Compile Include="Assets\Scripts\Tasks\TaskManager.cs" />
      <Compile Include="Assets\Scripts\Utility\Colliders.cs" />
+     <Compile Include="Assets\Scripts\Utility\Colliders3D.cs" />
      <Compile Include="Assets\Scripts\Utility\Manifest.cs" />
      <Compile Include="Assets\Scripts\WorldManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
