@@ -18,7 +18,12 @@ public class StrawlingTest : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            GetComponent<PathFollower>().PathTo(new Vector2(3,0));
+            
+            ContextMenu.Option opt = new ContextMenu.Option("Test Option",
+                                                            () => Debug.Log("Test option clicked!"));
+
+            ContextMenu.ContextMenuBuilder.BuildContextMenu(Vector3.zero, opt);
+
         }
     }
 }
