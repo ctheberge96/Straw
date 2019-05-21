@@ -14,20 +14,24 @@ namespace PathFinding {
 
         public static Tile GetTile(Vector3 position) {
 
-                Vector3 localPos = worldManager.GridToLocal(position);
-                Collider collider = Colliders3D.getCollider(localPos, Utils.worldManager.cellSize, LayerMask.GetMask("solid"));
-                if (collider == null) { return null; }
-                Tile myTile = collider.GetComponent<Tile>();
-                return myTile;
+                GameObject obj = GetGameObject(position);
+                return obj != null ? obj.GetComponent<Tile>():null;
 
         }
 
         public static Stairs GetStairs(Vector3 position) {
 
+                GameObject obj = GetGameObject(position);
+                return obj != null ? obj.GetComponent<Stairs>():null;
+
+        }
+
+        public static GameObject GetGameObject(Vector3 position) {
+
                 Vector3 localPos = worldManager.GridToLocal(position);
                 Collider collider = Colliders3D.getCollider(localPos, Utils.worldManager.cellSize, LayerMask.GetMask("solid"));
                 if (collider == null) { return null; }
-                return collider.gameObject.GetComponent<Stairs>();
+                return collider.gameObject;
 
         }
 
@@ -38,13 +42,34 @@ namespace PathFinding {
 
         }
 
+        private static GameObject consideredMarker;
+        private static GameObject curNodeMarker;
+
+        public static void CreateConsideredMarker(Vector3 position) {
+
+            if (consideredMarker == null) {
+                consideredMarker = (GameObject)Resources.Load("Point_considered");
+            }
+
+            GameObject.Instantiate(consideredMarker, position, Quaternion.identity);
+
+        }
+
+        public static void CreateCurNodeMarker(Vector3 position) {
+            
+            if (curNodeMarker == null) {
+                curNodeMarker = (GameObject)Resources.Load("Point_curnode");
+            }
+
+            GameObject.Instantiate(curNodeMarker, position, Quaternion.identity);
+
+        }
+
     }
 
     public class PathFinder {
 
         public static Path GetPath(Vector3 start, Vector3 end) {
-
-            int checks = 0;
 
             Vector3 gridStart = Utils.worldManager.LocalToGrid(start);
             Vector3 gridEnd = Utils.worldManager.LocalToGrid(end);
@@ -70,8 +95,6 @@ namespace PathFinding {
 
                         if (targetNode.isStair) {
 
-                            Debug.Log(targetNode.position + " is stair");
-
                             //a stair would be closed, so we need to consider other nodes.
                             Stairs stairs = Utils.GetStairs(targetNode.position);
 
@@ -88,7 +111,7 @@ namespace PathFinding {
 
                             if (!stairsFree) { continue; }
 
-                            if (curNode.position == stairs.lowerClimbZone.transform.position) {
+                            if (curNode.position == Utils.worldManager.LocalToGrid(stairs.lowerClimbZone.transform.position)) {
 
                                 //consider upperClimbZone
                                 Node upperNode = new Node(Utils.worldManager.LocalToGrid(stairs.upperClimbZone.transform.position),
@@ -96,7 +119,26 @@ namespace PathFinding {
 
                                 ConsiderNode(ref upperNode, ref curNode, ref endNode, ref openList, ref closedList);
 
-                            } else if (curNode.position == stairs.upperClimbZone.transform.position) {
+                            }
+
+                        } else if (Utils.GetStairs(targetNode.position - (Vector3.up * Utils.worldManager.cellSize.z)) != null) {
+
+                            Stairs stairs = Utils.GetStairs(targetNode.position - (Vector3.up * Utils.worldManager.cellSize.z));
+
+                            bool stairsFree = true;
+
+                            foreach (GameObject freeZone in stairs.freeZones) {
+
+                                Node zoneNode = new Node(Utils.worldManager.LocalToGrid(freeZone.transform.position),
+                                                        curNode, endNode);
+
+                                if (zoneNode.closed) { stairsFree = false; break; }
+
+                            }
+
+                            if (!stairsFree) { continue; }
+
+                            if (curNode.position == Utils.worldManager.LocalToGrid(stairs.upperClimbZone.transform.position)) {
 
                                 //consider lowerClimbZone
                                 Node lowerNode = new Node(Utils.worldManager.LocalToGrid(stairs.lowerClimbZone.transform.position),
@@ -108,13 +150,7 @@ namespace PathFinding {
 
                         } else if (!targetNode.closed) {
 
-                            Debug.Log(targetNode.position + " is open");
-
                             ConsiderNode(ref targetNode, ref curNode, ref endNode, ref openList, ref closedList);
-
-                        } else {
-
-                            Debug.Log(targetNode.position + " is closed");
 
                         }
 
@@ -134,10 +170,7 @@ namespace PathFinding {
                 curNode = best;
                 closedList.Add(curNode);
                 openList.Remove(curNode);
-
-                checks++;
-
-                if (checks > 100) { return null; }
+                //Utils.CreateCurNodeMarker(Utils.worldManager.GridToLocal(curNode.position));
 
             } // end while
 
@@ -173,6 +206,7 @@ namespace PathFinding {
                 } else {
 
                     openList.Add(targetNode);
+                   // Utils.CreateConsideredMarker(Utils.worldManager.GridToLocal(targetNode.position));
 
                 }
 
@@ -231,6 +265,13 @@ namespace PathFinding {
                 Vector3 underPos = position - (Vector3.up * Utils.worldManager.cellSize.z);
                 Tile myTile = Utils.GetTile(underPos);
                 return myTile != null ? myTile.moveCost:0;
+            }
+        }
+
+        public GameObject floor {
+            get {
+                Vector3 underPos = position - (Vector3.up * Utils.worldManager.cellSize.z);
+                return Utils.GetGameObject(underPos);
             }
         }
 

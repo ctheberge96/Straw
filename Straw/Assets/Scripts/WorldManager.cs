@@ -9,9 +9,11 @@ public class WorldManager : MonoBehaviour
     public GameObject cubePrefab;
 
     public Vector3 ConformToGrid(Vector3 worldPosition) {
-        return new Vector3( Mathf.Floor(worldPosition.x / cellSize.x) * cellSize.x,
-                            Mathf.Floor(worldPosition.y / cellSize.y) * cellSize.y,
-                            Mathf.Floor(worldPosition.z / cellSize.z) * cellSize.z );
+
+        return new Vector3( Mathf.RoundToInt(worldPosition.x / cellSize.x) * cellSize.x,
+                            Mathf.RoundToInt(worldPosition.y / cellSize.y) * cellSize.y,
+                            Mathf.RoundToInt(worldPosition.z / cellSize.z) * cellSize.z );
+
     }
 
     public Vector3 LocalToGrid(Vector3 local) {
